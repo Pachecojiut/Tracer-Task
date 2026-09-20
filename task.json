@@ -1,0 +1,12 @@
+[
+    {
+        "id": 1,
+        "description": "Dia de garimpo",
+        "status": "todo"
+    },
+    {
+        "id": 2,
+        "description": "Odeio IA",
+        "status": "todo"
+    }
+]
