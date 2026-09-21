@@ -1,12 +1,9 @@
 [
     {
         "id": 1,
-        "description": "Dia de garimpo",
-        "status": "todo"
-    },
-    {
-        "id": 2,
-        "description": "Odeio IA",
-        "status": "todo"
+        "description": "Nova",
+        "status": "todos",
+        "createdAt": "2026-09-21 10:30:19",
+        "updatedAt": "2026-09-21 10:30:19"
     }
 ]
