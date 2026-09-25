@@ -30,9 +30,10 @@ delete_parser.add_argument('id')
 
 mark_parser = subparsers.add_parser('mark')
 mark_parser.add_argument('id')
-mark_parser.add_argument('status')
+mark_parser.add_argument('status', choices=['done', 'todo', 'in progress'])
 
 list_parser = subparsers.add_parser('list')
+list_parser.add_argument('status', nargs='?', default=None, choices=['done', 'todo', 'in progress'])
 
 args = parser.parse_args()
 
@@ -40,7 +41,7 @@ args = parser.parse_args()
 
 def update_task(task_id, new_description):
     tasks = load_tasks()  #←←←←A função carrega a tarefa no arquivo JSON
-    for task in tasks:    #←←←←Passa por cada tarega na lista de tarefas
+    for task in tasks:    #←←←←Passa por cada tarefa na lista de tarefas
         if task['id'] == task_id: #←←←←←Proucura o ID da tarefa que o usuário quer atualizar
             task['description'] = new_description #←←←←←←Atualiza a descrição da tarefa com a nova descrição fornecida pelo usuário
             task['updatedAt'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S") #←←←←Atualiza a data de atualização da tarefa com a data e hora atual
@@ -55,7 +56,7 @@ def add_task(description):
     else:
         new_id = 1
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    task= {'id': new_id, 'description': description, 'status': 'todos', 'createdAt': now, 'updatedAt': now}
+    task= {'id': new_id, 'description': description, 'status': 'todo', 'createdAt': now, 'updatedAt': now}
     tasks.append(task)
     save_tasks(tasks)
 
@@ -74,10 +75,11 @@ def mark_task(task_id, status):
             return True
     return False
 
-def list_tasks():
+def list_tasks(task_filter=None):
     tasks =load_tasks()
     for task in tasks:
-        print(f'ID: {task['id']}, Description: {task['description']}, Status: {task['status']}, CreatedAt: {task['createdAt']}, UpdatedAt: {task['updatedAt']}')
+        if task_filter is None or task['status'] == task_filter:
+            print(f'ID: {task['id']},' f'Description: {task['description']},'  f'Status: {task['status']},' f'CreatedAt: {task['createdAt']},' f'UpdatedAt: {task['updatedAt']}')
 
 #Condições com as funções dos comandos dos argumentos
 if args.command == 'update':
@@ -89,8 +91,8 @@ elif args.command == 'add':
 elif args.command == 'mark':
     mark_task(int(args.id), args.status)
 elif args.command == 'list':
-    list_tasks()
-    
+    list_tasks(args.status)
+
 
 
 
