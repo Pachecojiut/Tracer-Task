@@ -59,7 +59,7 @@ As tarefas são armazenadas localmente no arquivo `task.json`, criado automatica
 
 ## Projeto
 
-https://github.com/Pachecojiut/Tracer-Task
+https://github.com/Pachecojiut/Tracer-Task/tree/master
 
 ## Tecnologias
 
