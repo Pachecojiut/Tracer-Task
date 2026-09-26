@@ -57,6 +57,10 @@ python3 task.py delete 1
 
 As tarefas são armazenadas localmente no arquivo `task.json`, criado automaticamente quando necessário.
 
+## Projeto
+
+https://github.com/Pachecojiut/Tracer-Task
+
 ## Tecnologias
 
 * Python 3
